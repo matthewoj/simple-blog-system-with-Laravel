@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use Cache;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
