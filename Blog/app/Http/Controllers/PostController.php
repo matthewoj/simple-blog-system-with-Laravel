@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\ControllersFormRequests;
 use App\Post;
 use Cache;
 use Carbon\Carbon;
@@ -13,7 +14,7 @@ class PostController extends Controller
         return ($id !== null) ? $this->getCache( 'posts' ) : $this->getCache( $id );
     }
 
-    public function create( Request $request ) {
+    public function create( FormRequests $request ) {
         Post::insert([
             'user_id' => $request->user()->id,
             'active' => $request->input('active'),
@@ -25,7 +26,7 @@ class PostController extends Controller
         $this->resetCache();
     }
 
-    public function update( Request $request ) {
+    public function update( FormRequests $request ) {
         $post = Post::findOrFail( $request->input('id') );
 
         $post->fill([
